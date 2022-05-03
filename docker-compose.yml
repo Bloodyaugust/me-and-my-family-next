@@ -9,6 +9,9 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+  mail:
+    image: bytemark/smtp
+    restart: always
 volumes:
   db:
     driver: local
