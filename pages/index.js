@@ -14,7 +14,7 @@ export default function Home({ numUsers }) {
       <main className={styles.main}>
         <h1>Welcome to this Family</h1>
         <h4>This Family has {numUsers} users</h4>
-        <button>Login</button>
+        <a href="/api/auth/signin">Login</a>
       </main>
     </div>
   )
