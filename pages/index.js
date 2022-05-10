@@ -1,8 +1,11 @@
 import { PrismaClient } from '@prisma/client'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ numUsers }) {
+  const { data: session } = useSession();
+
   return (
     <div>
       <Head>
@@ -14,13 +17,22 @@ export default function Home({ numUsers }) {
       <main className={styles.main}>
         <h1>Welcome to this Family</h1>
         <h4>This Family has {numUsers} users</h4>
-        <a href="/api/auth/signin">Login</a>
+        {session ?
+          <>
+            <span>Signed in as {session.user.email}</span>
+            <button onClick={signOut}>Logout</button>
+          </>
+          :
+          <>
+            <button onClick={signIn}>Login</button>
+          </>
+        }
       </main>
     </div>
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const prisma = new PrismaClient();
   const users = await prisma.user.findMany();
 
