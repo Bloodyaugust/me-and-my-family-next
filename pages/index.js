@@ -1,10 +1,16 @@
 import { PrismaClient } from '@prisma/client'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ numUsers }) {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.push('/feed');
+  }
 
   return (
     <div>
