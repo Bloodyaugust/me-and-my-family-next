@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       const post = await prisma.post.create({
         data: {
           title: '',
-          content: 'test content',
+          content: req.body.content || '',
           author: {
             connect: {
               id: user.id
