@@ -2,6 +2,7 @@ import { getSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useQuery } from 'react-query';
 import NewPost from '../components/NewPost';
+import Post from '../components/Post';
 import styles from './feed.module.css';
 
 export default function Feed({ session }) {
@@ -26,7 +27,7 @@ export default function Feed({ session }) {
         {data &&
           data.map((post) => {
             return (
-              <span key={post.id}>{post.id}: {post.content}</span>
+              <Post key={post.id} postID={post.id} />
             )
           })
         }

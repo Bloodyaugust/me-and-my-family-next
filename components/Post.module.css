@@ -1,0 +1,18 @@
+.container {
+  align-items: center;
+  background-color: var(--color-bg-2);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 35rem;
+}
+
+.content {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  display: flex;
+  gap: 1rem;
+}
